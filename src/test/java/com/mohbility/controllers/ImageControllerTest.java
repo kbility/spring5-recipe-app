@@ -79,12 +79,13 @@ public class ImageControllerTest {
         command.setId(1L);
 
         String s = "fake image text";
-        Byte[] bytesBoxed = new Byte[s.getBytes().length];
+        Byte[] bytesBoxed;
+        bytesBoxed = new Byte[s.getBytes().length];
 
         int i = 0;
 
         for (byte primByte : s.getBytes()){
-            bytesBoxed[i += 1] = primByte;
+            bytesBoxed[i++] = primByte;
         }
 
         command.setImage(bytesBoxed);
@@ -98,6 +99,7 @@ public class ImageControllerTest {
 
         byte[] reponseBytes = response.getContentAsByteArray();
 
+        assertEquals(s.getBytes().length, reponseBytes.length);
         assertEquals(s.getBytes().length, reponseBytes.length);
     }
 }
