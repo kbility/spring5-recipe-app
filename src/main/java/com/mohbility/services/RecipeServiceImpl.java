@@ -4,6 +4,7 @@ import com.mohbility.commands.RecipeCommand;
 import com.mohbility.converters.RecipeCommandToRecipe;
 import com.mohbility.converters.RecipeToRecipeCommand;
 import com.mohbility.domain.Recipe;
+import com.mohbility.exceptions.NotFoundException;
 import com.mohbility.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,8 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(l);
 
         if (!recipeOptional.isPresent()) {
-            throw new RuntimeException("Recipe Not Found!");
+            //throw new RuntimeException("Recipe Not Found!");
+            throw new NotFoundException("Recipe Not Found");
         }
 
         return recipeOptional.get();
